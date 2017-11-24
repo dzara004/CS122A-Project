@@ -7,7 +7,7 @@
 #include "timer.h"
 
 /* GLOBAL VARIABLES */
-unsigned char run;			//Determines whether to turn on the pump or not
+unsigned char run;		//Determines whether to turn on the pump or not
 
 enum States{wait, pump} state;
 
