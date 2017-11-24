@@ -15,7 +15,7 @@
 
 /* GLOBAL VARIABLES */
 unsigned char waterValue;	//Holds the current level of the water
-unsigned char pump;			//Determines whether to turn on the pump or not
+unsigned char pump;		//Determines whether to turn on the pump or not
 
 enum States{init, none, low, middle, high} state;
 
