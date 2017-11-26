@@ -18,11 +18,32 @@ unsigned char level;		//Holds the level of the water
 unsigned char phone;		//Returns the input of the phone
 Framebuffer fb;				//Variable for writing to OLED
 unsigned char i;			//Index for looping
+
+/* GLOBAL ARRAYS */
 unsigned char words0[8] = {'L', 'e', 'v', 'e', 'l', ' ', '0', '\n'};
 unsigned char words1[8] = {'L', 'e', 'v', 'e', 'l', ' ', '1', '\n'};
 unsigned char words2[8] = {'L', 'e', 'v', 'e', 'l', ' ', '2', '\n'};
 unsigned char words3[8] = {'L', 'e', 'v', 'e', 'l', ' ', '3', '\n'};
-unsigned char 
+	
+unsigned char liters0[18] = {'B', 'e', 'l', 'o', 'w', ' ', '0', '.', '1', '8', ' ', 'L', 'i', 't', 'e', 'r', 's', '\n'};
+unsigned char liters1[36] = {'B', 'e', 't', 'w', 'e', 'e', 'n', ' ', '0', '.', '1', '8', ' ', 'L', 'i', 't', 'e', 'r', 's', ' ', 'a', 'n', 'd', ' ', '0', '.', '9', '0', ' ', 'L', 'i', 't', 'e', 'r', 's', '\n'};
+unsigned char liters2[36] = {'B', 'e', 't', 'w', 'e', 'e', 'n', ' ', '0', '.', '9', '0', ' ', 'L', 'i', 't', 'e', 'r', 's', ' ', 'a', 'n', 'd', ' ', '1', '.', '8', '5', ' ', 'L', 'i', 't', 'e', 'r', 's', '\n'};
+unsigned char liters3[18] = {'A', 'b', 'o', 'v', 'e', ' ', '1', '.', '8', '5', ' ', 'L', 'i', 't', 'e', 'r', 's', '\n'};
+
+unsigned char quarts0[18] = {'B', 'e', 'l', 'o', 'w', ' ', '0', '.', '1', '9', ' ', 'Q', 'u', 'a', 'r', 't', 's', '\n'};
+unsigned char quarts1[36] = {'B', 'e', 't', 'w', 'e', 'e', 'n', ' ', '0', '.', '1', '8', ' ', 'Q', 'u', 'a', 'r', 't', 's', ' ', 'a', 'n', 'd', ' ', '0', '.', '9', '5', ' ', 'Q', 'u', 'a', 'r', 't', 's', '\n'};
+unsigned char quarts2[36] = {'B', 'e', 't', 'w', 'e', 'e', 'n', ' ', '0', '.', '9', '5', ' ', 'Q', 'u', 'a', 'r', 't', 's', ' ', 'a', 'n', 'd', ' ', '1', '.', '9', '5', ' ', 'Q', 'u', 'a', 'r', 't', 's', '\n'};
+unsigned char quarts3[18] = {'A', 'b', 'o', 'v', 'e', ' ', '1', '.', '9', '5', ' ', 'Q', 'u', 'a', 'r', 't', 's', '\n'};
+	
+unsigned char gallons0[19] = {'B', 'e', 'l', 'o', 'w', ' ', '0', '.', '0', '5', ' ', 'G', 'a', 'l', 'l', 'o', 'n', 's', '\n'};
+unsigned char gallons1[38] = {'B', 'e', 't', 'w', 'e', 'e', 'n', ' ', '0', '.', '0', '5', ' ', 'G', 'a', 'l', 'l', 'o', 'n', 's', ' ', 'a', 'n', 'd', ' ', '0', '.', '2', '4', ' ', 'G', 'a', 'l', 'l', 'o', 'n', 's', '\n'};
+unsigned char gallons2[38] = {'B', 'e', 't', 'w', 'e', 'e', 'n', ' ', '0', '.', '2', '4', ' ', 'G', 'a', 'l', 'l', 'o', 'n', 's', ' ', 'a', 'n', 'd', ' ', '0', '.', '4', '9', ' ', 'G', 'a', 'l', 'l', 'o', 'n', 's', '\n'};
+unsigned char gallons3[19] = {'A', 'b', 'o', 'v', 'e', ' ', '0', '.', '4', '9', ' ', 'G', 'a', 'l', 'l', 'o', 'n', 's', '\n'};
+	
+unsigned char cups0[16] = {'B', 'e', 'l', 'o', 'w', ' ', '0', '.', '7', '6', ' ', 'C', 'u', 'p', 's', '\n'};
+unsigned char cups1[32] = {'B', 'e', 't', 'w', 'e', 'e', 'n', ' ', '0', '.', '7', '6', ' ', 'C', 'u', 'p', 's', ' ', 'a', 'n', 'd', ' ', '3', '.', '8', '0', ' ', 'C', 'u', 'p', 's', '\n'};
+unsigned char cups2[32] = {'B', 'e', 't', 'w', 'e', 'e', 'n', ' ', '3', '.', '8', '0', ' ', 'C', 'u', 'p', 's', ' ', 'a', 'n', 'd', ' ', '7', '.', '8', '2', ' ', 'C', 'u', 'p', 's', '\n'};
+unsigned char cups3[16] = {'A', 'b', 'o', 'v', 'e', ' ', '7', '.', '8', '2', ' ', 'C', 'u', 'p', 's', '\n'};
 
 // 0.954 hz is lowest frequency possible with this function,
 // based on settings in PWM_on()
@@ -116,29 +137,147 @@ void BTTick() {
 						while (!USART_HasTransmitted(0)) {}
 					}
 				}
-			} else if ()
+			} else if (phone == 0x02) {
+				while (i < 18) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(liters0[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x03) {
+				while (i < 18) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(quarts0[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x04) {
+				while (i < 19) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(gallons0[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x05) {
+				while (i < 16) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(cups0[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			}
 			break;
 		case quarter:
-			while (i < 8) {
-				if (USART_IsSendReady(0)) {
-					USART_Send(words1[i++], 0);
-					while (!USART_HasTransmitted(0)) {}
+			if (phone == 0x01) {
+				while (i < 8) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(words1[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x02) {
+				while (i < 36) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(liters1[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x03) {
+				while (i < 36) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(quarts1[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x04) {
+				while (i < 38) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(gallons1[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x05) {
+				while (i < 32) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(cups1[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
 				}
 			}
 			break;
 		case half:
-			while (i < 8) {
-				if (USART_IsSendReady(0)) {
-					USART_Send(words2[i++], 0);
-					while (!USART_HasTransmitted(0)) {}
+			if (phone == 0x01) {
+				while (i < 8) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(words2[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x02) {
+				while (i < 36) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(liters2[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x03) {
+				while (i < 38) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(quarts2[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x04) {
+				while (i < 38) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(gallons2[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x05) {
+				while (i < 32) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(cups2[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
 				}
 			}
 			break;
 		case full:
-			while (i < 8) {
-				if (USART_IsSendReady(0)) {
-					USART_Send(words3[i++], 0);
-					while (!USART_HasTransmitted(0)) {}
+			if (phone == 0x01) {
+				while (i < 8) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(words3[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x02) {
+				while (i < 18) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(liters3[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x03) {
+				while (i < 18) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(quarts3[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x04) {
+				while (i < 19) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(gallons3[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
+				}
+			} else if (phone == 0x05) {
+				while (i < 16) {
+					if (USART_IsSendReady(0)) {
+						USART_Send(cups3[i++], 0);
+						while (!USART_HasTransmitted(0)) {}
+					}
 				}
 			}
 			break;
