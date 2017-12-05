@@ -7,6 +7,8 @@
 #include "usart_ATmega1284.h"
 #include "timer.h"
 #include "bit.h"
+
+/*Library for OLEDs found here: https://github.com/tibounise/SSD1306-AVR*/
 #include "SSD1306-AVR-master/I2C.h"
 #include "SSD1306-AVR-master/I2C.cpp"
 #include "SSD1306-AVR-master/SSD1306.cpp"
@@ -14,7 +16,7 @@
 #include "SSD1306-AVR-master/simulator/I2C.h"
 
 /* GLOBAL VARIABLES */
-unsigned char waterValue;	//Holds the current level of the water
+unsigned char waterValue;		//Holds the current level of the water
 unsigned char pump;			//Determines whether to turn on the pump or not
 Framebuffer fb;				//Variable for writing to OLED
 
@@ -126,7 +128,7 @@ int main(void)
 	//Uses one ATmega1284
 	DDRA = 0xFF; PORTA = 0x00;	//LCD control lines
 	DDRB = 0xFF; PORTB = 0x00;	//LCD data lines
-	DDRC = 0xFF; PORTC = 0x00;  //For LED and Blue OLED
+	DDRC = 0xFF; PORTC = 0x00;  	//For LED and Blue OLED
 	DDRD = 0x0A; PORTD = 0x00;	//For USART
 	
 	//Initializations
