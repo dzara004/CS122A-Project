@@ -8,7 +8,7 @@
 #include "timer.h"
 #include "bit.h"
 
-/*Library for OLEDs found here: https://github.com/tibounise/SSD1306-AVR*/
+/* Library for OLEDs found here: https://github.com/tibounise/SSD1306-AVR */
 #include "SSD1306-AVR-master/I2C.h"
 #include "SSD1306-AVR-master/I2C.cpp"
 #include "SSD1306-AVR-master/SSD1306.cpp"
